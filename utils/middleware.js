@@ -4,12 +4,12 @@ const parseInteractionsFromData = (data) => {
 
     logLines.forEach((line) => {
         const match = line.match(
-            /\[.*\] Received (.*) from .* at (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/
+            /\[.*\] Received .* from (\d+\.\d+\.\d+\.\d+) at (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/
         )
         if (match) {
-            const interaction = match[0]
             const timestamp = match[2]
-            interactions.push({ timestamp, interaction })
+            const callerIp = match[1]
+            interactions.push({ timestamp, callerIp })
         }
     })
 
