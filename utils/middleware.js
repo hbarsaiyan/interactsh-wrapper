@@ -17,10 +17,11 @@ const parseInteractionsFromData = (data) => {
 }
 
 const parseUrlFromData = (data) => {
-    const chunk = data.toString()
-    const chunks = chunk.split(' ')
-    const url = chunks[chunks.length - 1].slice(0, -1)
-    return url
+    data = data.toString()
+    const regex =
+        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi
+    const url = data.match(regex)
+    return url ? url[0] : null
 }
 
 export { parseInteractionsFromData, parseUrlFromData }
