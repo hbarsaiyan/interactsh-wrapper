@@ -4,7 +4,7 @@ const parseInteractionsFromData = (data) => {
 
     logLines.forEach((line) => {
         const match = line.match(
-            /\[.*\] Received .* from (\d+\.\d+\.\d+\.\d+) at (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/
+            /\[.*\] Received HTTP .* from (\d+\.\d+\.\d+\.\d+) at (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/
         )
         if (match) {
             const timestamp = match[2]
