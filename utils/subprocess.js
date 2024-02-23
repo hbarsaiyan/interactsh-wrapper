@@ -6,17 +6,24 @@ const subProcess = spawn('interactsh-client')
 let url = ''
 const interactionPipeline = []
 
-subProcess.stdout.on('data', (data) => {
-    const interactions = parseInteractionsFromData(data)
-    interactionPipeline.push(...interactions)
-})
+function listener(command) {
+    console.log('Starting Process...')
 
-subProcess.stderr.on('data', (data) => {
-    url = parseUrlFromData(data)
-})
+    subProcess.stdout.setEncoding('utf8')
+    subProcess.stdout.on('data', (data) => {
+        const interactions = parseInteractionsFromData(data)
+        interactionPipeline.push(...interactions)
+    })
 
-subProcess.on('error', (error) => {
-    console.error(`Error spawning interactsh-client: ${error.message}`)
-})
+    subProcess.stderr.setEncoding('utf8')
+    subProcess.stderr.on('data', (data) => {
+        url = parseUrlFromData(data)
+    })
 
-export { interactionPipeline, url }
+    subProcess.on('error', (error) => {
+        console.error(`Error spawning interactsh-client: ${error.message}`)
+        process.exit(1)
+    })
+}
+
+export { interactionPipeline, url, listener }

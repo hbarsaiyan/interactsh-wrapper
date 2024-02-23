@@ -1,7 +1,9 @@
 import express from 'express'
-import { interactionPipeline, url } from '../utils/subprocess.js'
+import { interactionPipeline, url, listener } from '../utils/subprocess.js'
 
 const router = express.Router()
+
+listener('interactsh-client')
 
 const filterInteractions = (start, end) => {
     return interactionPipeline.filter((interaction) => {

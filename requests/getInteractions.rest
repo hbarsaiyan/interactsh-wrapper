@@ -2,7 +2,6 @@ POST http://localhost:3000/api/getInteractions HTTP/1.1
 content-type: application/json
 
 {
-    "url": "cnbpq4ukah77sij5irr01a5zdpe9frzgc.oast.pro",
     "start": "2024-02-22 19:21:07",
     "end": "2025-02-22 19:21:07"
 }

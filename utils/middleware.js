@@ -19,9 +19,9 @@ const parseInteractionsFromData = (data) => {
 const parseUrlFromData = (data) => {
     data = data.toString()
     const regex =
-        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi
+        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.oast\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi
     const url = data.match(regex)
-    return url ? url[0] : null
+    return url ? 'https://'+url[0] : null
 }
 
 export { parseInteractionsFromData, parseUrlFromData }
