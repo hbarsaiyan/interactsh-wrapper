@@ -67,7 +67,7 @@
     }
     ```
 
-### 3. Get Interactions with payload
+### 2. Get Interactions with payload
 
 -   **Endpoint**: `/api/getInteractions`
 -   **Method**: POST
