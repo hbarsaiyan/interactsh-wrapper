@@ -115,6 +115,7 @@ const InteractionSchema = new mongoose.Schema(
                     returnedObject.timestamp.toTimeString().split(' ')[0]
                 delete returnedObject._id
                 delete returnedObject.__v
+                delete returnedObject.username
             },
         },
         toJSON: {
@@ -125,6 +126,7 @@ const InteractionSchema = new mongoose.Schema(
                     returnedObject.timestamp.toTimeString().split(' ')[0]
                 delete returnedObject._id
                 delete returnedObject.__v
+                delete returnedObject.username
             },
         },
     }
