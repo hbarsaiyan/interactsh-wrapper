@@ -13,7 +13,6 @@ router.get('/api/getURL', (req, res) => {
 })
 
 // POST /api/getInteractions
-
 router.post('/api/getInteractions', async (req, res) => {
     const { start, end } = req.body
     try {
