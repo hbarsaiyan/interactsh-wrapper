@@ -32,6 +32,26 @@
 
 ### Installation
 
+#### Docker
+
+To use the Docker image, follow these steps:
+
+1. Pull the image:
+
+    ```bash
+    docker pull hbarsaiyan/interactsh-wrapper:v1
+    ```
+
+2. Run a Docker container:
+
+    ```bash
+    docker run -p 8000:8000 hbarsaiyan/interactsh-wrapper:v1
+    ```
+
+#### Manual Installation
+
+To manually install the interactsh-wrapper, follow these steps:
+
 1. Clone this repository:
 
     ```bash
@@ -47,7 +67,7 @@
 3. Run the server:
 
     ```bash
-    node app.js
+    npm start
     ```
 
 ## Usage
