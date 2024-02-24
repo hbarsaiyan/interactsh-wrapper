@@ -20,6 +20,7 @@ const login = async () => {
         process.exit(1)
     }
     logger.info('Login successful')
+    return username
 }
 
 export default login

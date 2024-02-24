@@ -1,10 +1,12 @@
 import { Interaction } from '../models/collections.js'
+import { getUsername } from '../index.js'
 import { url } from './subprocess.js'
 import logger from './logger.js'
 
 const parseInteractionsFromData = (data) => {
     const logLines = data.toString().split('\n')
     const interactions = []
+    const username = getUsername()
 
     logLines.forEach((line) => {
         const match = line.match(
@@ -12,6 +14,7 @@ const parseInteractionsFromData = (data) => {
         )
         if (match) {
             const interaction = new Interaction({
+                username,
                 payload: url,
                 callerIp: match[2],
                 timestamp: match[3],

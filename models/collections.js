@@ -89,6 +89,10 @@ export const User = mongoose.model('User', userSchema)
 
 const InteractionSchema = new mongoose.Schema(
     {
+        username: {
+            type: String,
+            required: true,
+        },
         payload: {
             type: String,
             required: true,

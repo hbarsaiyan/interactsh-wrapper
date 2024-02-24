@@ -26,15 +26,25 @@ const argv = yargs(hideBin(process.argv))
     .strictCommands()
     .alias('help', 'h').argv
 
+let username = null
+
 if (argv.register) {
-    register().then({
-        
+    register().then((registeredUsername) => {
+        username = registeredUsername
+        startApp()
     })
 } else if (argv.login) {
-    login().then(startApp)
+    login().then((loggedInUsername) => {
+        username = loggedInUsername
+        startApp()
+    })
 } else {
     logger.info('Please login to start the app.')
     process.exit(1)
+}
+
+export function getUsername() {
+    return username
 }
 
 function startApp() {

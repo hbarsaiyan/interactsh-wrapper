@@ -1,4 +1,5 @@
 import express from 'express'
+import { getUsername } from '../index.js'
 import { Interaction } from '../models/collections.js'
 import { interactionPipeline, url, listener } from '../utils/subprocess.js'
 
@@ -15,8 +16,10 @@ router.get('/api/getURL', (req, res) => {
 // POST /api/getInteractions
 router.post('/api/getInteractions', async (req, res) => {
     const { start, end } = req.body
+    const username = getUsername()
     try {
         const filteredInteractions = await Interaction.find({
+            username,
             timestamp: {
                 $gte: new Date(start),
                 $lte: new Date(end),

@@ -19,10 +19,11 @@ const register = async () => {
         process.exit(1)
     }
     const newUser = new User({ username, password })
-    newUser
+    return newUser
         .save()
         .then(() => {
             logger.info('User registered successfully')
+            return username
         })
         .catch((error) => {
             logger.error(error.message)
