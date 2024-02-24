@@ -4,6 +4,7 @@ import config from '../utils/config.js'
 import logger from '../utils/logger.js'
 
 mongoose.set('strictQuery', false)
+
 logger.info('Connecting to database...')
 await mongoose
     .connect(config.MONGODB_URI)
@@ -19,6 +20,14 @@ mongoose.set('toJSON', {
         delete returnedObject.__v
     },
 })
+
+// mongoose.set('toObject', {
+//     transform: (document, returnedObject) => {
+//         returnedObject.id = returnedObject._id.toString()
+//         delete returnedObject._id
+//         delete returnedObject.__v
+//     },
+// })
 
 const userSchema = new mongoose.Schema(
     {
@@ -77,4 +86,45 @@ userSchema.methods.comparePassword = function (password) {
     return bcrypt.compare(password, this.password)
 }
 
-export default mongoose.model('User', userSchema)
+export const User = mongoose.model('User', userSchema)
+
+const InteractionSchema = new mongoose.Schema(
+    {
+        payload: {
+            type: String,
+            required: true,
+        },
+        callerIp: {
+            type: String,
+            required: true,
+        },
+        timestamp: {
+            type: Date,
+            required: true,
+        },
+    },
+    {
+        toObject: {
+            transform: (document, returnedObject) => {
+                returnedObject.timestamp =
+                    returnedObject.timestamp.toISOString().split('T')[0] +
+                    ' ' +
+                    returnedObject.timestamp.toTimeString().split(' ')[0]
+                delete returnedObject._id
+                delete returnedObject.__v
+            },
+        },
+        toJSON: {
+            transform: (document, returnedObject) => {
+                returnedObject.timestamp =
+                    returnedObject.timestamp.toISOString().split('T')[0] +
+                    ' ' +
+                    returnedObject.timestamp.toTimeString().split(' ')[0]
+                delete returnedObject._id
+                delete returnedObject.__v
+            },
+        },
+    }
+)
+
+export const Interaction = mongoose.model('Interaction', InteractionSchema)
