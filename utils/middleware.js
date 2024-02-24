@@ -5,7 +5,6 @@ import logger from './logger.js'
 
 const parseInteractionsFromData = (data) => {
     const logLines = data.toString().split('\n')
-    const interactions = []
     const username = getUsername()
 
     logLines.forEach((line) => {
@@ -13,6 +12,7 @@ const parseInteractionsFromData = (data) => {
             /\[(.*?)\] Received HTTP .* from (\d+\.\d+\.\d+\.\d+) at (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})/
         )
         if (match) {
+            logger.info(match[0])
             const interaction = new Interaction({
                 username,
                 payload: url,
@@ -21,19 +21,11 @@ const parseInteractionsFromData = (data) => {
             })
             interaction
                 .save()
-                .then(() => logger.info('Data saved successfully'))
                 .catch((error) =>
                     logger.info('Error saving data:', error.message)
                 )
-
-            // const payload = match[0]
-            // const callerIp = match[1]
-            // const timestamp = match[2]
-            // interactions.push({ payload, callerIp, timestamp })
         }
     })
-
-    return interactions
 }
 
 const parseUrlFromData = (data) => {

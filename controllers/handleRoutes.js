@@ -1,7 +1,8 @@
 import express from 'express'
 import { getUsername } from '../index.js'
 import { Interaction } from '../models/collections.js'
-import { interactionPipeline, url, listener } from '../utils/subprocess.js'
+import { url, listener } from '../utils/subprocess.js'
+import logger from '../utils/logger.js'
 
 const router = express.Router()
 
@@ -9,7 +10,6 @@ listener('interactsh-client')
 
 // GET /api/getURL
 router.get('/api/getURL', (req, res) => {
-    console.log(url)
     res.json({ url })
 })
 
@@ -26,9 +26,8 @@ router.post('/api/getInteractions', async (req, res) => {
             },
         })
         res.json(filteredInteractions)
-        console.log(filteredInteractions)
     } catch (error) {
-        console.log('Error fetching data:', error)
+        logger.error('Error fetching data:', error)
         res.status(500).json({ message: 'Error fetching data' })
     }
 })

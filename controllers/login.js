@@ -11,6 +11,7 @@ const login = async () => {
 
     if (!user) {
         logger.error('User not found')
+        logger.info('Use -r or --register to create user')
         process.exit(1)
     }
 
@@ -19,7 +20,6 @@ const login = async () => {
         logger.error('Incorrect password. Please try again.')
         process.exit(1)
     }
-    logger.info('Login successful')
     return username
 }
 

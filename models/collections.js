@@ -5,10 +5,8 @@ import logger from '../utils/logger.js'
 
 mongoose.set('strictQuery', false)
 
-logger.info('Connecting to database...')
 await mongoose
     .connect(config.MONGODB_URI)
-    .then(() => logger.info('Connected to database.'))
     .catch((error) =>
         logger.error(`Could not connect to database. Error: ${error}`)
     )

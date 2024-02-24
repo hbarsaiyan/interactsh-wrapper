@@ -1,5 +1,6 @@
+import promptSync from 'prompt-sync'
+const prompt = promptSync({ sigint: true })
 import { User } from '../models/collections.js'
-import prompt from 'prompt-sync'
 import logger from '../utils/logger.js'
 
 const register = async () => {
