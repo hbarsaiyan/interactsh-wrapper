@@ -1,16 +1,10 @@
 import express from 'express'
+import { Interaction } from '../models/collections.js'
 import { interactionPipeline, url, listener } from '../utils/subprocess.js'
 
 const router = express.Router()
 
 listener('interactsh-client')
-
-const filterInteractions = (start, end) => {
-    return interactionPipeline.filter((interaction) => {
-        const timestamp = interaction.timestamp
-        return (!start || timestamp >= start) && (!end || timestamp <= end)
-    })
-}
 
 // GET /api/getURL
 router.get('/api/getURL', (req, res) => {
@@ -19,11 +13,22 @@ router.get('/api/getURL', (req, res) => {
 })
 
 // POST /api/getInteractions
-router.post('/api/getInteractions', (req, res) => {
+
+router.post('/api/getInteractions', async (req, res) => {
     const { start, end } = req.body
-    const filteredInteractions = filterInteractions(start, end)
-    res.json(filteredInteractions)
-    console.log(filteredInteractions)
+    try {
+        const filteredInteractions = await Interaction.find({
+            timestamp: {
+                $gte: new Date(start),
+                $lte: new Date(end),
+            },
+        })
+        res.json(filteredInteractions)
+        console.log(filteredInteractions)
+    } catch (error) {
+        console.log('Error fetching data:', error)
+        res.status(500).json({ message: 'Error fetching data' })
+    }
 })
 
 export default router

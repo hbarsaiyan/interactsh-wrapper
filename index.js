@@ -8,7 +8,7 @@ import { hideBin } from 'yargs/helpers'
 import figlet from 'figlet'
 import routeHandler from './controllers/handleRoutes.js'
 import cors from 'cors'
-import User from './models/user.js'
+import { User } from './models/collections.js'
 
 const argv = yargs(hideBin(process.argv))
     .options({
@@ -57,9 +57,7 @@ if (argv.register) {
             logger.error(error.message)
             process.exit(1)
         })
-}
-
-if (argv.login) {
+} else if (argv.login) {
     // Ask user for username and password
     const username = prompt('Enter username: ')
     const password = prompt.hide('Enter password: ')
@@ -83,6 +81,9 @@ if (argv.login) {
 
     // Start the app
     startApp()
+} else {
+    logger.info('Please login to start the app.')
+    process.exit(1)
 }
 
 function startApp() {
