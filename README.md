@@ -1,5 +1,7 @@
 # interactsh-wrapper
 
+![interactsh-wrapper-banner](image.png)
+
 **interactsh-wrapper** is a Node.js server that interacts with the `interactsh-client` to fetch and filter interactions.
 
 ## Getting Started
@@ -94,15 +96,30 @@ To manually install the interactsh-wrapper, follow these steps:
 -   **Description**: Retrieves interactions with the OOB payload based on the start timestamp and end timestamp as the request body in JSON format.
 -   **Example Response**:
 
-    ```json
-    {
-        "timestamp": "2024-02-22 19:39:45",
-        "callerIp": "104.21.230.14"
-    },
-    {
-        "timestamp": "2024-02-22 19:39:46",
-        "callerIp": "104.21.230.14"
-    }
+        ```json
+
+    [
+        {
+        "payload": "https://cnd1nsekah78hvd9iii0hfsr7df9d4j7q.oast.online",
+        "callerIp": "117.250.161.194",
+        "timestamp": "2024-02-24 16:40:29"
+        },
+        {
+        "payload": "https://cnd1nsekah78hvd9iii0hfsr7df9d4j7q.oast.online",
+        "callerIp": "117.250.161.194",
+        "timestamp": "2024-02-24 16:40:31"
+        },
+        {
+        "payload": "https://cnd28vekah7bv05tultgonnk5krtc5d8s.oast.pro",
+        "callerIp": "117.250.161.194",
+        "timestamp": "2024-02-24 17:17:02"
+        },
+        {
+        "payload": "https://cnd28vekah7bv05tultgonnk5krtc5d8s.oast.pro",
+        "callerIp": "117.250.161.194",
+        "timestamp": "2024-02-24 17:17:03"
+        }
+    ]
     ```
 
 ## License

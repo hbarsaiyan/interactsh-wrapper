@@ -1,6 +1,6 @@
 {
     "name": "interactsh-wrapper",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Wrapper for interact.sh [https://github.com/projectdiscovery/interactsh]",
     "main": "index.js",
     "type": "module",

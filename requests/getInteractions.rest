@@ -1,7 +1,7 @@
-POST http://localhost:3001/api/getInteractions HTTP/1.1
+POST http://localhost:8000/api/getInteractions HTTP/1.1
 content-type: application/json
 
 {
-    "start": "2024-02-24 14:19:46",
-    "end": "2025-02-24 14:21:34"
+    "start": "2024-02-24 19:19:46",
+    "end": "2024-02-25 14:21:34"
 }
