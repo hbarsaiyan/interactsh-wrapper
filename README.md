@@ -85,7 +85,7 @@ To manually install the interactsh-wrapper, follow these steps:
 
     ```json
     {
-        "url": "cmr9e6j1ntfgnq5da8kgkx5ky4ywxksp4.oast.live"
+        "url": "https://cmr9e6j1ntfgnq5da8kgkx5ky4ywxksp4.oast.live"
     }
     ```
 
@@ -96,8 +96,7 @@ To manually install the interactsh-wrapper, follow these steps:
 -   **Description**: Retrieves interactions with the OOB payload based on the start timestamp and end timestamp as the request body in JSON format.
 -   **Example Response**:
 
-        ```json
-
+    ```
     [
         {
         "payload": "https://cnd1nsekah78hvd9iii0hfsr7df9d4j7q.oast.online",
